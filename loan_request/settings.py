@@ -6,3 +6,12 @@ INSTALLED_APPS += (
 )
 
 ROOT_URLCONF = 'loan_request.urls'
+
+DATABASES['default'] = {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'loan',
+        'USER': 'petros',
+        'PASSWORD': 'supersecret',
+        'HOST': 'postgres',
+        'PORT': '5432',
+}

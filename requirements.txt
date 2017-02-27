@@ -1,6 +1,12 @@
 appdirs==1.4.2
+colorama==0.3.7
 Django==1.10.5
 djangorestframework==3.5.4
+funcsigs==1.0.2
+mockito==1.0.11
 packaging==16.8
+psycopg2==2.6.2
+py==1.4.32
 pyparsing==2.1.10
+pytest==3.0.6
 six==1.10.0
