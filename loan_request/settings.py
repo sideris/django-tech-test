@@ -7,6 +7,8 @@ INSTALLED_APPS += (
     'rest_framework'
 )
 
+APPEND_SLASH = False
+
 ROOT_URLCONF = 'loan_request.urls'
 
 # disable for dev
