@@ -7,4 +7,3 @@ RUN mkdir /loan
 WORKDIR /loan/
 COPY . /loan
 RUN pip install -r requirements.txt
-CMD ./run.sh
