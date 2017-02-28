@@ -1,9 +1,7 @@
 from __future__ import unicode_literals
 
 from django.core.validators import RegexValidator, MinValueValidator, MaxValueValidator
-from django.db.models import CASCADE
-from django.db.models import Model, CharField, IntegerField, BooleanField
-from django.db.models import OneToOneField
+from django.db.models import Model, CharField, IntegerField, BooleanField, CASCADE, OneToOneField
 
 
 class LoanRequest(Model):
