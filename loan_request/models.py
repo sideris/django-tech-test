@@ -12,6 +12,13 @@ class LoanRequest(Model):
     approved    = BooleanField(null=False, default=False)
     description = CharField(null=False, max_length=1000)
 
+    def json(self):
+        return {
+            'amount': self.amount,
+            'duration': self.duration,
+            'description': self.description
+        }
+
 
 class Business(Model):
     # this should come from a site-config.json or similar
@@ -22,6 +29,14 @@ class Business(Model):
     address             = CharField(null=False, max_length=200)
     registered_number   = IntegerField(null=False, validators=[RegexValidator(r'^\d{10,10}$')])
 
+    def json(self):
+        return {
+            'name': self.name,
+            'sector': {'name': self.get_sector_display(), 'value': self.sector},
+            'address': self.address,
+            'registered_number': self.registered_number
+        }
+
 
 class Client(Model):
     name        = CharField(null=False, max_length=100)
@@ -29,3 +44,12 @@ class Client(Model):
     telephone   = CharField(null=False, max_length=15)
     request     = OneToOneField(LoanRequest, on_delete=CASCADE, related_name='client')
     business    = OneToOneField(Business, on_delete=CASCADE, related_name='client')
+
+    def json(self):
+        return {
+            'name': self.name,
+            'email': self.email,
+            'telephone': self.telephone,
+            'request': self.request.json() if hasattr(self, 'request') else None,
+            'business': self.business.json() if hasattr(self, 'business') else None,
+        }
