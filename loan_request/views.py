@@ -1,5 +1,6 @@
 from django.core.exceptions import ValidationError
 from django.db import transaction
+from django.views.generic import TemplateView
 from rest_framework import status
 from rest_framework.decorators import api_view, renderer_classes
 from rest_framework.renderers import JSONRenderer
@@ -16,6 +17,13 @@ class Messages:
 
 def make_message(message):
     return {'message': message}
+
+
+class LoanRequestView(TemplateView):
+    template_name = 'loan_request.html'
+
+    def get_context_data(self, **kwargs):
+        return {'name': 'test'}
 
 
 @api_view(['GET'])
