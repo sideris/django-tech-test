@@ -50,7 +50,6 @@ def create_loan_request(request):
     user_data = data.get('user', None)
     business_data = data.get('business', None)
     loan_request_data = data.get('loan_request', None)
-    import pdb;pdb.set_trace()
     if None in [user_data, business_data, loan_request_data]:
         return Response(make_message(Messages.FORM_NOT_COMPLETE), status=status.HTTP_400_BAD_REQUEST)
     business = Business(**business_data)
