@@ -14,7 +14,7 @@ ROOT_URLCONF = 'loan_request.urls'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "media")
 ]
-# disable for dev
+# disable for dev, uncomment if you want to use docker
 # DATABASES['default'] = {
 #         'ENGINE': 'django.db.backends.postgresql_psycopg2',
 #         'NAME': 'loan',
