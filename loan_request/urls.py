@@ -4,7 +4,6 @@ from loan_request import views
 from loan_request.views import LoanRequestView
 
 loan_urls = [
-    url(r'^test/', views.test),
     url(r'^loan/', views.create_loan_request)
 ]
 

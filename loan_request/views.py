@@ -9,11 +9,12 @@ from rest_framework.response import Response
 from loan_request.models import Business, LoanRequest, Client
 
 
-# in some utils package
+# should be in some utils package, but the scope of this project is too small
 class Messages:
     FORM_NOT_COMPLETE   = "Please fill all available fields"
     ERRONEOUS_DATA      = "There's something wrong with the data you have entered"
     REQUEST_SENT        = "Request has been received. You will be notified by email"
+
 
 def make_message(message):
     return {'message': message}
@@ -34,12 +35,6 @@ class LoanRequestView(TemplateView):
             }
         }
         return c
-
-
-@api_view(['GET'])
-@renderer_classes((JSONRenderer,))
-def test(request):
-    return Response({"message": "Hello"})
 
 
 @transaction.atomic
