@@ -1,10 +1,70 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Request a new loan</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link href="{% static "css/app.css" %}" rel="stylesheet" type="text/css">
 </head>
 <body>
-{{ name }}
+<div id="container" class="container">
+    <div id="form-container" class="col-md-6 col-md-offset-3">
+        <form>
+
+            <fieldset data-key="user" class="form-group">
+                <legend>Personal info</legend>
+                <label for="client-name">Name</label>
+                <input id="client-name" type="text" data-key="name" class="form-control" required />
+                <label for="client-email">Email</label>
+                <input id="client-email" type="email" data-key="email" class="form-control" required />
+                <label for="client-telephone">Telephone</label>
+                <input id="client-telephone" type="tel" data-key="telephone" class="form-control" required />
+            </fieldset>
+
+            <fieldset data-key="business" class="form-group">
+                <legend>Business info</legend>
+                <label for="business-name">Name</label>
+                <input id="business-name" type="text" data-key="name" class="form-control" required />
+                <label for="business-sector">Sector</label>
+                <select id="business-sector" data-type="number" data-key="sector" class="form-control" required >
+                    {% for k, v in form_config.business.sectors.items %}
+                        <option value="{{ k }}">{{ v }}</option>
+                    {% endfor %}
+                </select>
+                <label for="business-address">Address</label>
+                <input id="business-address" type="tel" data-key="address" class="form-control" required />
+                <label for="business-registered_number">Registration number</label>
+                <input id="business-registered_number" type="text" data-key="registered_number" class="form-control" required
+                       pattern="\d{10,10}"/>
+            </fieldset>
+
+            <fieldset data-key="loan_request" class="form-group">
+                <legend>Loan Request</legend>
+                <label for="loan_request-amount">Loan amount</label>
+                <input id="loan_request-amount" type="number"
+                       min="{{ form_config.loan.amount_limit.0 }}"
+                       max="{{ form_config.loan.amount_limit.1 }}"
+                       value="{{ form_config.loan.amount_limit.0 }}"
+                       class="form-control" required step="500" data-key="amount"/>
+                <label for="loan_request-duration">Loan duration (days)</label>
+                <input id="loan_request-duration " type="number"
+                       min="{{ form_config.loan.duration_limit.0 }}"
+                       max="{{ form_config.loan.duration_limit.1 }}"
+                       value="{{ form_config.loan.duration_limit.0 }}"
+                       class="form-control" required step="1" data-key="duration"/>
+                <label for="loan_request-description">Describe the reason for your loan</label>
+                <textarea id="loan_request-description" data-key="description" class="form-control" required ></textarea>
+            </fieldset>
+            <button type="submit" class="btn btn-lg btn-success">Submit request</button>
+
+        </form>
+
+    </div>
+</div>
 </body>
+<script src="{% static "js/jquery.min.js" %}"></script>
+<script src="{% static "js/bootstrap.min.js" %}"></script>
+<script src="{% static "js/lodash.js" %}"></script>
+<script src="{% static "js/app.js" %}"></script>
 </html>

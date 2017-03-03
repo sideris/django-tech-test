@@ -23,7 +23,17 @@ class LoanRequestView(TemplateView):
     template_name = 'loan_request.html'
 
     def get_context_data(self, **kwargs):
-        return {'name': 'test'}
+        c = super(LoanRequestView, self).get_context_data(**kwargs)
+        c['form_config'] = {
+            'loan': {
+                'amount_limit': list(LoanRequest.AMOUNT_LIMITS),
+                'duration_limit': [1, 200]
+            },
+            'business': {
+                'sectors': {item[0]: item[1] for item in Business.SECTORS}
+            }
+        }
+        return c
 
 
 @api_view(['GET'])
@@ -40,6 +50,7 @@ def create_loan_request(request):
     user_data = data.get('user', None)
     business_data = data.get('business', None)
     loan_request_data = data.get('loan_request', None)
+    import pdb;pdb.set_trace()
     if None in [user_data, business_data, loan_request_data]:
         return Response(make_message(Messages.FORM_NOT_COMPLETE), status=status.HTTP_400_BAD_REQUEST)
     business = Business(**business_data)
