@@ -22,5 +22,15 @@ $('#form-container form').on('submit', function (e) {
         type: "POST",
         data: JSON.stringify(datum),
         contentType: "application/json",
-    });
+    }).done(function(r) {
+        $.toast({
+            text : r.message,
+            showHideTransition : 'slide'
+        })
+    }).fail(function(r) {
+        $.toast({
+            text : r.message,
+            showHideTransition : 'slide'
+        })
+    })
 })
