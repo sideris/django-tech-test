@@ -12,7 +12,7 @@ APPEND_SLASH = False
 ROOT_URLCONF = 'loan_request.urls'
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "media"),
+    os.path.join(BASE_DIR, "media")
 ]
 # disable for dev
 # DATABASES['default'] = {

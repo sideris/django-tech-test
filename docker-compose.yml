@@ -1,8 +1,8 @@
-version: "2"
+version: "2.1"
 services:
   app:
       build: .
-      command: python manage.py runserver 0.0.0.0:8000
+      command: /bin/bash -c "sleep 20; ./init.sh"
       ports:
         - "8000:8000"
       links:
